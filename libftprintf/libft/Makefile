@@ -6,7 +6,7 @@
 #    By: nwattana <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/01 00:39:59 by nwattana          #+#    #+#              #
-#    Updated: 2022/04/20 07:21:17 by nwattana         ###   ########.fr        #
+#    Updated: 2022/06/14 07:38:21 by nwattana         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -67,26 +67,29 @@ CC = gcc
 CC_FLAG = -Wall -Wextra -Werror
 
 %.o: %.c
-	${CC} ${CC_FLAG} -c $< -o $@
+	@${CC} ${CC_FLAG} -c $< -o $@
 
 
 $(NAME): ${OBJS}
-	ar -rcs ${NAME} ${OBJS}
+	@ar -rcs ${NAME} ${OBJS}
 
 norm:
 	norminett *.c
 
 all: ${NAME}
+	@printf "\e[1;32m%s\e[0m\n" "LIBFT---Done"
 
 clean:
-	rm -f *.o
+	@rm -f *.o
+	@printf "\e[1;31m%s\e[0m\n" "Remove ,o file"
 
 fclean: clean
-	rm -f ${NAME}
+	@rm -f ${NAME}
+	@printf "\e[1;31m%s\e[0m\n" "Remove .a file"
 
 re:fclean all
 
 bonus: ${OBJS} ${OBJSBONUS}
-	ar rcs ${NAME} ${OBJS} ${OBJSBONUS}
+	@ar rcs ${NAME} ${OBJS} ${OBJSBONUS}
 
 .PHONY:norm all clean fclean re bonus

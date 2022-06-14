@@ -6,7 +6,7 @@
 #    By: nwattana <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/11 13:10:10 by nwattana          #+#    #+#              #
-#    Updated: 2022/04/22 01:33:49 by nwattana         ###   ########.fr        #
+#    Updated: 2022/06/14 07:56:40 by nwattana         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,27 +45,27 @@ CC = gcc
 CFLAG = -Wall -Wextra -Werror
 
 all : ${NAME}
+	@printf "\e[1;32m%s\e[0m\n" "LIBFT_PRINTF---Done"
 
 ${NAME} : ${OBJ} ${LIBFT}
-	ar rc ${NAME} ${OBJ}
+	@ar rc ${NAME} ${OBJ}
 
 ${OBJ}:%.o:${SRC_DIR}/%.c
-	${CC} ${CFLAG} -I ${INC_DIR} -I ${LIBFT_DIR} -c $< -o $@
+	@${CC} ${CFLAG} -I ${INC_DIR} -I ${LIBFT_DIR} -c $< -o $@
 
 ${LIBFT}:
-	echo "MAKE LIBFT"
-	make -C ${LIBFT_DIR}
-	cp ${LIBFT} ${NAME}
+	make -C ${LIBFT_DIR} re
+	@cp ${LIBFT} ${NAME}
 
 bonus : all
 
 clean :
-	rm -f *.o */*.o
-	make clean -C ${LIBFT_DIR}
+	@rm -f *.o */*.o
+	make -C ${LIBFT_DIR} clean
 
 fclean : clean
-	rm -f ${NAME}
-	rm -f ${LIBFT}
+	@rm -f ${NAME}
+	make -C ${LIBFT_DIR} fclean
 
 re : fclean all
 
