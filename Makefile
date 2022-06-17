@@ -16,7 +16,8 @@ all:
 main:
 	@printf "${GREEN}%s${ENDCOLOR}\n" "complie file main"
 	@gcc -Wall -Wextra -Werror -I$(LIBFT_INC) -I$(LIBFT_DIR) main.c $(LIBFT_PRINT) -o main.o
-	@./main.o
+	@-./main.o
+	@-rm -rf main.o
 
 
 testlib: lib
