@@ -1,32 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   main2.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nwattana <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/15 00:35:21 by nwattana          #+#    #+#             */
-/*   Updated: 2022/06/18 13:21:05 by nwattana         ###   ########.fr       */
+/*   Created: 2022/06/18 07:50:57 by nwattana          #+#    #+#             */
+/*   Updated: 2022/06/18 13:30:40 by nwattana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdio.h>
 #include "libftprintf.h"
 #include <unistd.h>
-#include <stdio.h>
+#include <sys/types.h>
+#include <signal.h>
 
-int	main(void)
+int main(int argc, char *argv[])
 {
-	int	pid;
+	int	ser_pid;
 
-	pid = getpid();
-	if (pid == -1)
-		return (1);
-	if(ft_printf("%d\n",pid) == -1)
-		return (-1);
-	while(1)
-	{
-		ft_printf("hello\n");
-		sleep(20);
-	}
-	return (0);
+	if (argc != 2)
+		return (0);
+	printf("this file name : %s\n",argv[0]);
+	printf("hello I'm client\n");
+	ser_pid = ft_atoi(argv[1]);
+	printf("ser_pid: %d\n",ser_pid);
+	if (ser_pid > 0)
+		kill(ser_pid,9);
 }

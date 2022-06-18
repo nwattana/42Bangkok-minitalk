@@ -15,10 +15,13 @@ all:
 
 main:
 	@printf "${GREEN}%s${ENDCOLOR}\n" "complie file main"
-	@gcc -Wall -Wextra -Werror -I$(LIBFT_INC) -I$(LIBFT_DIR) main.c $(LIBFT_PRINT) -o main.o
+	@-gcc -Wall -Wextra -Werror -I$(LIBFT_INC) -I$(LIBFT_DIR) main.c $(LIBFT_PRINT) -o main.o
 	@-./main.o
-	@-rm -rf main.o
 
+mmm:
+	@printf "${GREEN}%s${ENDCOLOR}\n" "complie file zclient"
+	@gcc -Wall -Wextra -Werror -I$(LIBFT_INC) -I$(LIBFT_DIR) zclient.c $(LIBFT_PRINT) -o zclient
+	@-./zclient
 
 testlib: lib
 	@gcc -Wall -Wextra -Werror -I$(LIBFT_INC) -I$(LIBFT_DIR) check-lib.c $(LIBFT_PRINT) -o check-lib.o
@@ -34,6 +37,7 @@ clean:
 	@rm -rf *.o
 	@rm -rf *.dSYM
 	@rm -rf *.out
+	@rm -rf zclient
 
 role:
 	printf "all main testlib lib debug clean\n"
