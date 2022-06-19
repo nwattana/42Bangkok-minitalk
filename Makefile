@@ -1,6 +1,6 @@
-LIBFT_DIR = libftprintf/
+LIBFT_DIR = libftprintf/ 
 LIBFT_PRINT = libftprintf/libftprintf.a
-LIBFT_INC = libftprintf/includes
+LIBFT_INC = libftprintf/includes/ -Ilibftprintf/libft/
 
 RED=\e[1;31m
 GREEN=\e[1;32m
@@ -22,9 +22,14 @@ main:
 	@-gcc -Wall -Wextra -Werror -I$(LIBFT_INC) -I$(LIBFT_DIR) main.c $(LIBFT_PRINT) -o main.o
 	@-./main.o
 
+cz:
+	@printf "${GREEN}%s${ENDCOLOR}\n" "complie file m_server.c client.c"
+	@-gcc -Wall -Wextra -Werror -I$(LIBFT_INC) -I$(LIBFT_DIR) m_server.c $(LIBFT_PRINT) -o server
+	@gcc -Wall -Wextra -Werror -I$(LIBFT_INC) -I$(LIBFT_DIR) client.c $(LIBFT_PRINT) -o client
+
 mmm:
 	@printf "${GREEN}%s${ENDCOLOR}\n" "complie file zclient"
-	@gcc -Wall -Wextra -Werror -I$(LIBFT_INC) -I$(LIBFT_DIR) zclient.c $(LIBFT_PRINT) -o zclient
+	@-gcc -Wall -Wextra -Werror -I$(LIBFT_INC) -I$(LIBFT_DIR) zclient.c $(LIBFT_PRINT) -o zclient
 	@-./zclient
 
 testlib: lib
@@ -44,4 +49,4 @@ clean:
 	@rm -rf zclient
 
 role:
-	printf "all main testlib lib debug clean\n"
+	@printf "all main testlib lib debug clean\n"
